@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PUB TV KVIZ 4x4 - Prvi TV pub kviz</title>
+    <style>
+        :root {
+            --primary: #8B0000;
+            --secondary: #D4AF37;
+            --dark: #1a1a1a;
+            --light: #f8f8f8;
+            --accent: #4169E1;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%231a1a1a"/><path d="M20,20 L80,20 L80,80 L20,80 Z" fill="none" stroke="%23D4AF37" stroke-width="2"/><text x="50" y="50" text-anchor="middle" fill="%23D4AF37" font-size="24">4x4</text></svg>');
+            background-size: cover;
+            background-position: center;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .logo {
+            font-size: 4rem;
+            font-weight: bold;
+            color: var(--secondary);
+            text-shadow: 3px 3px 0 var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .tagline {
+            font-size: 1.5rem;
+            color: var(--light);
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: 2px solid var(--secondary);
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary);
+            color: var(--dark);
+            transform: translateY(-3px);
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: var(--secondary);
+            text-align: center;
+            position: relative;
+        }
+        
+        h2:after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background-color: var(--primary);
+            margin: 10px auto;
+        }
+        
+        h3 {
+            font-size: 1.8rem;
+            margin: 30px 0 15px;
+            color: var(--secondary);
+        }
+        
+        .concept {
+            background-color: #2a2a2a;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .feature-card {
+            background-color: #333;
+            padding: 30px;
+            border-radius: 10px;
+            border-left: 5px solid var(--secondary);
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-card h4 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--secondary);
+        }
+        
+        .rules-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+        }
+        
+        .rules-table th, .rules-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #444;
+        }
+        
+        .rules-table th {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .rules-table tr:nth-child(even) {
+            background-color: #2a2a2a;
+        }
+        
+        .app-section {
+            background-color: #2a2a2a;
+        }
+        
+        .app-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .app-feature {
+            flex: 1;
+            min-width: 300px;
+            padding: 20px;
+            background-color: #333;
+            border-radius: 10px;
+        }
+        
+        .hosts {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            margin-top: 40px;
+        }
+        
+        .host-card {
+            flex: 1;
+            min-width: 250px;
+            max-width: 300px;
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            border-radius: 10px;
+        }
+        
+        .host-icon {
+            font-size: 3rem;
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+        
+        .production {
+            background-color: #2a2a2a;
+        }
+        
+        .production-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .production-item {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .production-icon {
+            font-size: 3rem;
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+        
+        footer {
+            background-color: #111;
+            padding: 50px 0 20px;
+            text-align: center;
+        }
+        
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+        
+        .copyright {
+            margin-top: 30px;
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            section {
+                padding: 50px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">PUB KVIZ 4x4</div>
+            <p class="tagline">Prvi TV pub kviz u kojem učestvuju i takmičari u studiju i gledaoci kod kuće</p>
+            <a href="#concept" class="btn">Saznaj više</a>
+        </div>
+    </header>
+    
+    <section id="concept" class="concept">
+        <div class="container">
+            <h2>Koncept emisije</h2>
+            <p>"4x4" je prvi TV pub kviz u kojem učestvuju i takmičari u studiju i gledaoci kod kuće, putem posebne mobilne aplikacije. To je spoj znanja, zabave i spontanosti, u formatu koji briše granicu između televizije i stvarnog paba.</p>
+            <p>Atmosfera je opuštena i pabska — igra uz zabavu, osmeh i improvizaciju. Tome doprinosi i voditeljski par od kojih je jedan za šankom, a drugi među takmičarima.</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h4>4 Timova</h4>
+                    <p>Četiri tima sa po 4 takmičara se takmiče u studiju, otuda i naziv kviza 4x4.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>4 Kategorije</h4>
+                    <p>Opšte znanje, istorija-geografija, sport i pop kultura + specijalna oblast sa gostom.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>Mobilna aplikacija</h4>
+                    <p>Gledaoci kod kuće mogu da se takmiče putem mobilne aplikacije u isto vreme.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>Reality momenat</h4>
+                    <p>Akcione kamere i "ispovedaonica" prate emocije i reakcije takmičara.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="format" class="format">
+        <div class="container">
+            <h2>Format kviza</h2>
+            
+            <h3>Kategorije pitanja</h3>
+            <ul>
+                <li><strong>Opšte znanje</strong> – pitanja iz najrazličitijih oblasti (osim istorije, geografije, pop kulture)</li>
+                <li><strong>Istorija – geografija</strong> – samo ime kaže</li>
+                <li><strong>Sport</strong> – sport</li>
+                <li><strong>Pop kultura</strong> – pitanja iz oblasti muzike, filma, stripa, televizije, estrade</li>
+                <li><strong>Specijalna oblast</strong> – sa gostom iznenađenja</li>
+            </ul>
+            
+            <h3>Formati pitanja</h3>
+            <ul>
+                <li>Jedan od ponuđenih odgovora - ABCD</li>
+                <li>Direktna pitanja (u kojima morate ukucati tačan odgovor)</li>
+                <li>Hronološko ređanje (pad Berlinskog zida, rođenje Hendriksa, let na mesec...)</li>
+                <li>Muzička pitanja (bend odsvira određenu temu na koju se pitanje odnosi)</li>
+            </ul>
+            
+            <h3>Ligaški sistem</h3>
+            <p>Jedna sezona kviza traje 16 nedelja (4x4), u njoj učestvuje 16 timova, a oni se nadmeću po ligaškom sistemu takmičenja:</p>
+            <ul>
+                <li>12 emisija ligaškog dela</li>
+                <li>2 polufinala</li>
+                <li>1 veliko finale</li>
+                <li>1 VIP/Celebrity emisija</li>
+            </ul>
+        </div>
+    </section>
+    
+    <section id="rules" class="rules">
+        <div class="container">
+            <h2>Pravila i bodovanje</h2>
+            
+            <h3>Način igranja</h3>
+            <p>Svaki tim poseduje tablet sa PUB Kviz 4x4 aplikacijom za studio. Dozvoljeno je dogovaranje oko odgovora, a jedan od takmičara odgovara putem tableta. Timovi imaju 20 sekundi da odgovore na postavljeno pitanje.</p>
+            
+            <h3>Bodovanje po pitanjima</h3>
+            <table class="rules-table">
+                <thead>
+                    <tr>
+                        <th>Redosled tačnih odgovora</th>
+                        <th>Broj poena</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Najbrži odgovor</td>
+                        <td>10 poena</td>
+                    </tr>
+                    <tr>
+                        <td>Drugi najbrži odgovor</td>
+                        <td>7 poena</td>
+                    </tr>
+                    <tr>
+                        <td>Treći najbrži odgovor</td>
+                        <td>5 poena</td>
+                    </tr>
+                    <tr>
+                        <td>Najsporiji odgovor</td>
+                        <td>3 poena</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>Bodovanje na kraju emisije</h3>
+            <p>Na kraju svake emisije, timovi se rangiraju po broju ukupno osvojenih poena:</p>
+            <ul>
+                <li>Pobednik: 10 bodova</li>
+                <li>Drugoplasirani: 7 bodova</li>
+                <li>Trećeplasirani: 5 bodova</li>
+                <li>Četvrtoplasirani: 3 boda</li>
+            </ul>
+            <p>Ovi bodovi se upisuju u zbirnu tabelu ukupnog plasmana timova. U slučaju nerešenog rezultata, rang određuje prosečna brzina odgovaranja tokom celog kviza.</p>
+        </div>
+    </section>
+    
+    <section id="app" class="app-section">
+        <div class="container">
+            <h2>Aplikacije</h2>
+            
+            <div class="app-features">
+                <div class="app-feature">
+                    <h3>Aplikacija za studio</h3>
+                    <p>Koriste je učesnici kviza, voditelj i produkcija emisije. Prikazuje takmičarima pitanje, preostalo vreme i ponuđene odgovore. Automatizuje proces odgovaranja i bodovanja.</p>
+                    <ul>
+                        <li>Voditelj pokreće vreme za svako pitanje</li>
+                        <li>Aplikacija "blokira" odgovaranje posle 20 sekundi</li>
+                        <li>Prikazuje rezultate timova i prosečno vreme odgovaranja</li>
+                    </ul>
+                </div>
+                
+                <div class="app-feature">
+                    <h3>Aplikacija za gledaoce</h3>
+                    <p>Mobilna aplikacija Pub Kviz 4x4 omogućava gledaocima da se pridruže igranju kviza tokom gledanja emisije.</p>
+                    <ul>
+                        <li>Skeniranje QR koda za povezivanje sa emisijom</li>
+                        <li>Takmičenje sa svim ostalim gledaocima</li>
+                        <li>Mogućnost kreiranja "hubova" za igru sa prijateljima</li>
+                        <li>Rang lista učesnika dostupna 30 minuta nakon emisije</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h3>Kako sistem funkcioniše?</h3>
+            <ol>
+                <li>Epizode TV kviza se unapred snimaju</li>
+                <li>U post-produkciji, dodaje se jedinstveni QR kod za svaku epizodu</li>
+                <li>Gledaoci skeniraju QR kod koristeći mobilnu aplikaciju</li>
+                <li>Svi odgovori se prikupljaju u bazi podataka</li>
+                <li>Rang lista se formira i prikazuje na veb sajtu produkcije</li>
+            </ol>
+        </div>
+    </section>
+    
+    <section id="hosts" class="hosts-section">
+        <div class="container">
+            <h2>Voditelji i ekipa</h2>
+            
+            <div class="hosts">
+                <div class="host-card">
+                    <div class="host-icon">🎤</div>
+                    <h3>Glavni voditelj</h3>
+                    <p>Zabavan, šarmantan, elokventan, opušten. U ulozi glavnog domaćina naših takmičara, postavlja pitanja, startuje vreme, vodi računa o tempu emisije.</p>
+                </div>
+                
+                <div class="host-card">
+                    <div class="host-icon">🍻</div>
+                    <h3>Voditelj za šankom</h3>
+                    <p>Smirena, staložena, precizna. Vodi računa da vrati tok emisije u kviz okvire. Čita tačne odgovore i daje trivije i zanimljivosti.</p>
+                </div>
+                
+                <div class="host-card">
+                    <div class="host-icon">🎵</div>
+                    <h3>Bend</h3>
+                    <p>Mali ansambl koji doda boju i veselje. Naglašava dobre ili loše fazone voditelja, svira muziku napetosti i muzička pitanja.</p>
+                </div>
+            </div>
+            
+            <h3>Gost iznenađenja</h3>
+            <p>U svakoj epizodi kviza postoji gost iznenađenja koji dolazi u naš "pab", seda za šank i razgovara sa voditeljima. Nakon kratkog intervjua, on preuzima ulogu voditelja i postavlja pitanja iz specijalne oblasti koja je vezana za ono čime se gost bavi.</p>
+        </div>
+    </section>
+    
+    <section id="production" class="production">
+        <div class="container">
+            <h2>Produkcija i scenografija</h2>
+            
+            <div class="production-grid">
+                <div class="production-item">
+                    <div class="production-icon">🎭</div>
+                    <h3>Scenografija</h3>
+                    <p>Studio imitira stereotipni pab sa četiri polukružna stola, šankom, malom binom za bend i pabskim rekvizitima.</p>
+                </div>
+                
+                <div class="production-item">
+                    <div class="production-icon">🎥</div>
+                    <h3>Reality momenat</h3>
+                    <p>Svaki sto sa timovima je opremljen širokougaonom "akcionom" kamerom. Na kraju kviza, snima se "ispovedaonica" gde igrači komentarišu ključne trenutke.</p>
+                </div>
+                
+                <div class="production-item">
+                    <div class="production-icon">📺</div>
+                    <h3>Veliki ekran</h3>
+                    <p>Iznad šanka, iza voditelja je veliki ekran na kome se prikazuju pitanja, vreme za odgovaranje i rezultati.</p>
+                </div>
+                
+                <div class="production-item">
+                    <div class="production-icon">💼</div>
+                    <h3>Product Placement</h3>
+                    <p>Scenografija i aplikacija za gledaoce pružaju prostor za product placement pića, tehnologije i drugih proizvoda.</p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="#contact" class="btn">Kontaktirajte nas</a>
+            </div>
+        </div>
+    </section>
+    
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-logo">PUB KVIZ 4x4</div>
+            <p>Prvi TV pub kviz u kojem učestvuju i takmičari u studiju i gledaoci kod kuće</p>
+            <p style="margin-top: 20px;">Kontakt: info@pubkviz4x4.rs | +381 11 123 456</p>
+            <div class="copyright">
+                &copy; 2023 PUB TV KVIZ 4x4. Sva prava zadržana.
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
